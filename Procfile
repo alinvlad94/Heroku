@@ -1,1 +1,1 @@
-web: java -jar build/libs/heroku-test-0.0.1-SNAPSHOT
+web: java -jar build/libs/heroku-test-0.0.1-SNAPSHOT.jar
