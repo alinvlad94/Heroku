@@ -19,6 +19,13 @@ group = 'alinvlad'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = 1.8
 
+jar {
+	manifest {
+		attributes 'Implementation-Title': 'Heroku',
+				'Implementation-Version': version
+	}
+}
+
 repositories {
 	mavenCentral()
 }
