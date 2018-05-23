@@ -1,1 +1,1 @@
-web: build\install\heroku-test\bin\heroku-test.bat
+web: build\install\Heroku\bin\Heroku.bat

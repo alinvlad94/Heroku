@@ -1,1 +1,1 @@
-web: build/install/heroku-test/bin/heroku-test
+web: build/install/Heroku/bin/Heroku
