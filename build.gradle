@@ -4,9 +4,13 @@ buildscript {
 	}
 	repositories {
 		mavenCentral()
+		maven {
+			url "https://plugins.gradle.org/m2/"
+		}
 	}
 	dependencies {
 		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+		classpath 'com.moowork.gradle:gradle-node-plugin:1.2.0'
 	}
 }
 
@@ -30,6 +34,7 @@ repositories {
 	mavenCentral()
 }
 
+apply plugin: 'com.moowork.node'
 
 dependencies {
 	compile group: 'org.springframework.boot', name: 'spring-boot-starter-data-jpa', version: '2.0.2.RELEASE'
@@ -38,4 +43,45 @@ dependencies {
 	compile group: 'mysql', name: 'mysql-connector-java', version: '8.0.11'
 
 	testCompile('org.springframework.boot:spring-boot-starter-test')
+}
+
+def webappDir = "$projectDir/src/main/webapp"
+sourceSets {
+	main {
+		resources {
+			srcDirs = ["$webappDir/dist", "$projectDir/src/main/resources"]
+		}
+	}
+}
+
+processResources {
+	dependsOn "buildAngular"
+	doLast {
+		ant.move file: "$buildDir/resources/main/static/index.html",
+				todir: "$buildDir/resources/main/templates"
+	}
+}
+
+task buildAngular(type:Exec) {
+	dependsOn "installAngular"
+	workingDir "$webappDir"
+	inputs.dir "$webappDir"
+	group = BasePlugin.BUILD_GROUP
+	if (System.getProperty("os.name").toUpperCase().contains("WINDOWS")){
+		commandLine "ng.cmd", "build"
+	} else {
+		commandLine "ng", "build"
+	}
+
+}
+
+task installAngular(type:Exec) {
+	workingDir "$webappDir"
+	inputs.dir "$webappDir"
+	group = BasePlugin.BUILD_GROUP
+	if (System.getProperty("os.name").toUpperCase().contains("WINDOWS")){
+		commandLine "npm.cmd", "install"
+	} else {
+		commandLine "npm", "install"
+	}
 }
