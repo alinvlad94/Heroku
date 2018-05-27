@@ -45,12 +45,11 @@ dependencies {
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 }
 
-/*
-def webappDir = "$projectDir/src/main/webapp"
+def webappDir = "$projectDir"
 sourceSets {
 	main {
 		resources {
-			srcDirs = ["$webappDir/dist", "$projectDir/src/main/resources"]
+			srcDirs = ["$webappDir/webapp/dist", "$projectDir/src/main/resources"]
 		}
 	}
 }
@@ -86,4 +85,3 @@ task installAngular(type:Exec) {
 		commandLine "npm", "install"
 	}
 }
-*/
