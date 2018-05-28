@@ -54,7 +54,7 @@ sourceSets {
 	}
 }
 
-processResources {
+/*processResources {
 	dependsOn "buildAngular"
 	doLast {
 		ant.move file: "$buildDir/resources/main/static/index.html",
@@ -84,4 +84,4 @@ task installAngular(type:Exec) {
 	} else {
 		commandLine "npm", "install"
 	}
-}
+}*/
