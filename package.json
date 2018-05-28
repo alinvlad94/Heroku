@@ -7,7 +7,12 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "version": "0.0.1",
+    "engines": {
+      "npm": "5.6.0",
+      "node": "8.11.1"
+    }
   },
   "private": true,
   "dependencies": {

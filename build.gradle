@@ -45,16 +45,15 @@ dependencies {
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 }
 
-def webappDir = "$projectDir"
+def webappDir = "$projectDir/webapp"
 sourceSets {
 	main {
 		resources {
-			srcDirs = ["$webappDir/webapp/dist", "$projectDir/src/main/resources"]
+			srcDirs = ["$webappDir/dist", "$projectDir/src/main/resources"]
 		}
 	}
 }
 
-/*
 processResources {
 	dependsOn "buildAngular"
 	doLast {
@@ -71,7 +70,7 @@ task buildAngular(type:Exec) {
 	if (System.getProperty("os.name").toUpperCase().contains("WINDOWS")){
 		commandLine "ng.cmd", "build"
 	} else {
-		commandLine "npm run ng", "build"
+		commandLine "ng", "build"
 	}
 
 }
@@ -86,4 +85,3 @@ task installAngular(type:Exec) {
 		commandLine "npm", "install"
 	}
 }
-*/
